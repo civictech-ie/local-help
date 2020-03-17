@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'services#index'
-    resources :services
+    resources :services do
+      member do
+        patch :toggle_publish
+      end
+    end
   end
 
   namespace :api do

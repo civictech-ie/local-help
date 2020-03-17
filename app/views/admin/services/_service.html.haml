@@ -1,0 +1,10 @@
+- @services.each do |service|
+  .card
+    .card-body
+      %h4.card-title= service.title
+      = link_to 'Edit', [:edit, :admin, service], class: 'card-link'
+      - if !service.published?
+        = link_to 'Publish', [:toggle_publish, :admin, service], class: 'card-link', method: 'patch'
+      - else
+        = link_to 'Unpublish', [:toggle_publish, :admin, service], class: 'card-link', method: 'patch'
+      = link_to 'Delete', [:admin, service], class: 'card-link', method: :delete, data: {confirm: 'You sure?'}

@@ -16,6 +16,12 @@ class Admin::ServicesController < Admin::ApplicationController
     end
   end
 
+  def toggle_publish
+    @service = Service.find_by(hashed_id: params[:id])
+    @service.toggle_publish!
+    redirect_to [:admin, :services]
+  end
+
   def edit
     @service = Service.find_by(hashed_id: params[:id])
   end

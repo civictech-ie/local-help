@@ -12,6 +12,18 @@ class Service < ApplicationRecord
     hashed_id
   end
 
+  def published?
+    self.published_at.present?
+  end
+
+  def toggle_publish!
+    if self.published?
+      self.update(published_at: nil)
+    else
+      self.update(published_at: Time.now)
+    end
+  end
+
   def available_in?(area)
     self.areas.include?(self.class.normalise_string(area))
   end
