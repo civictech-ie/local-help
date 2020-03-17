@@ -25,4 +25,16 @@ class ServiceTest < ActiveSupport::TestCase
     assert_equal service.areas.count, 0
     assert_equal service.categories.count, 0
   end
+
+  test "parse strings" do
+    service = services(:valid)
+    service.areas_str = 'dublin 8, dublin 7'
+    service.save!
+
+    assert service.available_in?("Dublin 8")
+    assert_not service.available_in?("Dublin 6")
+
+    assert Service.for_area("Dublin 8").include?(service)
+    assert_not Service.for_area("Dublin 6").include?(service)
+  end
 end

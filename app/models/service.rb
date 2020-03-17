@@ -6,7 +6,7 @@ class Service < ApplicationRecord
   scope :for_category, -> (c) { c ? where('categories @> ?', "{#{ normalise_string(c) }}") : none }
   scope :for_area, -> (a) { a ? where('areas @> ?', "{#{ normalise_string(a) }}") : none }
 
-  before_validation :normalise_areas, :normalise_categories
+  before_validation :generate_hashed_id, :normalise_areas, :normalise_categories
 
   def to_param
     hashed_id
@@ -20,6 +20,22 @@ class Service < ApplicationRecord
     str.downcase.strip.squeeze(' ')
   end
 
+  def areas_str
+    areas.join(', ')
+  end
+
+  def areas_str=(str)
+    self.areas = str.split(',').map(&:strip)
+  end
+
+  def categories_str
+    categories.join(', ')
+  end
+
+  def categories_str=(str)
+    self.categories = str.split(',').map(&:strip)
+  end
+
   private
 
   def normalise_categories
@@ -31,6 +47,7 @@ class Service < ApplicationRecord
   end
 
   def generate_hashed_id
+    return if hashed_id.present?
     self.hashed_id = Digest::SHA1.hexdigest([Time.now, rand].join).slice(0, 16)
   end
 end

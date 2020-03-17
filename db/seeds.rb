@@ -1,7 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Service.create!(
+  title: 'Support Helpline',
+  description: 'Alone, the elderly support charity are running a helpline in collaboration with the Department of Health and the HSE. Staff will be available to answer queries regarding COVID-19 (Coronavirus) and give advice and reassurance where necessary. The support line will be open Monday to Friday, 8am-8pm but hours may be extended to meet the demand.',
+  contact_url: 'https://alone.ie/',
+  contact_number: '0818 222 024',
+  areas_str: 'Citywide',
+  categories_str: 'outreach',
+  published_at: Time.now
+)

@@ -1,1 +1,9 @@
 <h1>Service moderation</h1>
+
+<%= link_to 'New', [:new, :admin, :service] %>
+
+<ul>
+  <%- @services.each do |service| %>
+    <li><%= service.inspect -%></li>
+  <%- end %>
+</ul>
