@@ -4,6 +4,6 @@
 
 <ul>
   <%- @services.each do |service| %>
-    <li><%= service.inspect -%></li>
+    <li><%= link_to service.title, [:edit, :admin, service] -%></li>
   <%- end %>
 </ul>
