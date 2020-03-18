@@ -6,13 +6,13 @@ class Api::ServicesController < ApplicationController
     render json: @services
   end
   
-  def create
+  def create # suggest
     @service = Service.new(service_params)
     @service.suggested_at = Time.now
     if @service.save
       render json: {status: 'ok'}
     else
-      render json: {service: @service}, status: 422
+      render json: {errors: @service.errors}, status: 422
     end
   end
 
