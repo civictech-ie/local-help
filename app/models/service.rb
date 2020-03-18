@@ -1,5 +1,6 @@
 class Service < ApplicationRecord
   validates :hashed_id, presence: true, uniqueness: true
+  validates :description, presence: true
   
   scope :unpublished, -> { where(published_at: nil) }
   scope :published, -> { where.not(published_at: nil) }

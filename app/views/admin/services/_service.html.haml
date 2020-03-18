@@ -1,6 +1,12 @@
 .card
   .card-body
-    %h4.card-title= service.title
+    %h4.card-title
+      - if service.title
+        = service.title
+      - elsif service.suggested_at
+        Submitted #{ time_ago_in_words service.suggested_at } ago
+      - else
+        Untitled
     = link_to 'Edit', [:edit, :admin, service], class: 'card-link'
     - if !service.published?
       = link_to 'Publish', [:toggle_publish, :admin, service], class: 'card-link', method: 'patch'

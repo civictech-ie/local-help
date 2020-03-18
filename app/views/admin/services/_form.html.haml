@@ -46,5 +46,8 @@
         .form-group
           = f.label :contact_url
           = f.text_field :contact_url, class: 'form-control'
+        .form-group
+          = f.label :safety_doc_url, 'Safety doc URL'
+          = f.text_field :safety_doc_url, class: 'form-control'
 
         = f.button 'Save', class: 'btn btn-primary'
