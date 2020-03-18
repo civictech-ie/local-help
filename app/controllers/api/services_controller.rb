@@ -12,7 +12,7 @@ class Api::ServicesController < ApplicationController
     if @service.save
       render json: {status: 'ok'}
     else
-      render json: {errors: @service.errors}, status: 422
+      render json: {service: @service, errors: @service.errors}, status: 422
     end
   end
 
